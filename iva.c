@@ -12,8 +12,15 @@ int main(){
         }else{
     do
     {
+        printf("para calcular iva oprima 1\n");
+printf("para ver el historial oprima 2\n");
+printf("para salir oprima 3\n");
+scanf("%d",&op);
 
-        
+
+switch (op)
+{
+case 1: 
         printf("ingrese un precio \n");
         scanf("%d",&precio);
 double final;
@@ -22,11 +29,30 @@ printf("el iva es %.2lf \n",final);
 printf("el precio sin iva es %d \n", precio);
 
 FILE *archivo = fopen("salida.txt","a");
-fprintf(archivo,"iva %d  precio %d\n",precio, final);
-             
-printf("para salir oprima 1\n");
-printf("para continuar oprima un numero\n");
-scanf("%d",&op);
-    } while (op != 1);}
+fprintf(archivo,"iva %.2lf  precio %d\n",final, precio);
+fclose(archivo);
+default: 
+    break;
+
+case 2: 
+archivo = fopen("salida.txt","r");
+char historial[100];
+printf("\nHistorial\n\n");
+while (feof(archivo) == 0)
+{
+    fgets( historial, 100, archivo);
+    printf(historial);
+
+}  
+fclose(archivo);
+break;
+
+printf("opcion invalida\n");
+    break;
+}
+        
+
+
+    } while (op != 3);}
     
 }

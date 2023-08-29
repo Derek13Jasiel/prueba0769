@@ -1,10 +1,10 @@
 #include <stdio.h>
 
 int main(){
-int op;  int no1 = 6;   int promedio = 0;
+int op;  int no1 = 2;   
 char nombre[100];
 char materia[100];
-int nota[no1];
+double nota[no1];
 
     FILE *archivo = fopen("salida.txt","r");
     if (archivo == NULL ){
@@ -12,8 +12,8 @@ int nota[no1];
         fclose(archivo);}else{
 
 do
-{
-    printf("1)Registrar nuevo estudiante y notas\n");
+{   double promedio = 0;
+    printf("\n\n1)Registrar nuevo estudiante y notas\n");
     printf("2)ver historial\n");
         printf("3)borrar historial\n");
             printf("4)salir\n");
@@ -26,7 +26,8 @@ do
                 printf("Nombre del estudiante: ");
     scanf("%s",&nombre);
     FILE *archivo = fopen("salida.txt","a");
-    fprintf(archivo,"nombre :%s\n",nombre);
+    fprintf(archivo,"\nnombre :%s",nombre);
+    fclose(archivo);
 
     for (int i = 0; i < no1; i++)
     {
@@ -34,8 +35,9 @@ do
     scanf("%s",&materia);
 
     printf("\nnota: ");
-    scanf("%d",&nota[i]); 
-    fprintf(archivo,"materia %s nota %d", materia, nota);
+    scanf("%lf",&nota[i]); 
+    FILE *archivo = fopen("salida.txt","a");
+    fprintf(archivo,"\nmateria %s nota %.2lf", materia, nota[i]);
     fclose(archivo);
     }
 
@@ -64,7 +66,7 @@ break;
 
     case 3:
     
-    archivo = fopen("hola.txt","w");
+    archivo = fopen("salida.txt","w");
 printf("\nHISTORIAL BORRADO\n");
 fclose(archivo);
         
@@ -74,10 +76,6 @@ fclose(archivo);
         }
 
 
-    
-
-
-   
     
     
 } while (op != 4);
